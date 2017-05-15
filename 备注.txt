@@ -1,0 +1,65 @@
+github 用来托管代码的网站
+
+https://coding.net/
+
+git 版本控制工具
+
+1. 安装
+2. 在项目目录下打开base命令窗口
+3. 让git管理项目
+	git init
+git分三个区: 工作区、缓存区、版本库
+
+4. 把工作区内容放在缓存区
+	git add .|file
+5. 把缓存区内容放在版本库
+	git commit -m '这里写上提交的信息'
+6. 查看工作区的状态
+	git status
+
+
+把本地的代码托管在github上
+
+1. 要让git和github做一个连接
+2. 用到ssh
+	SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议
+3. 生成一个私钥和公钥
+	a. 配置本机的git
+		git config --global user.name "github的用户名"
+		git config --global user.email "github的注册邮箱"
+
+		使用git config --list 查看是否配置成功
+	b. 生成公钥和秘钥
+		ssh-keygen -t rsa -C 'github的注册邮箱'
+
+		查看生成公钥和秘钥的文件在.ssh中查看，具体路径参考生成时的路径
+	c. 打开.ssh中的id_rsa.pub文件，复制里面的内容
+		这个内容是给github用的
+	d. 步骤参考图片
+
+4. 验证git和github是否连接成功
+	ssh -T git@github.com
+	如果看到了hi 用户名 说明连接成功
+
+5. 连接成功后，在github中创建仓库
+
+6. 使用git把本地的项目连接到远程的仓库地址
+
+	git remote add origin 仓库地址
+
+7. 把本地项目版本库的内容推送到远程仓库
+	git push -u origin master
+
+-----------------------以上步骤完事之后，再改动--------------------------
+git add .
+git commit -m "信息"
+git push
+
+
+-------------------克隆别人的代码-------------------
+git clone 仓库地址
+
+
+------------忽视某些文件------------
+在项目目录下创建文件 .gitignore
+里面写上忽略的文件或文件夹
